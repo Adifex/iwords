@@ -143,7 +143,7 @@
 		37CC43692634D81900E60CE9 /* DefinitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionView.swift; sourceTree = "<group>"; };
 		37ECE3312826CBEF0087C94C /* SearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQuery.swift; sourceTree = "<group>"; };
 		37EDB2E927945A4400911BC6 /* AutosizingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutosizingTextField.swift; sourceTree = "<group>"; };
-		AA0000000000000000000001 /* macOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/macOS.xcconfig; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000001 /* Config/macOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/macOS.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,7 +302,7 @@
 		37A4D1A0262227E300A9E9EC = {
 			isa = PBXGroup;
 			children = (
-				AA0000000000000000000001 /* macOS.xcconfig */,
+				AA0000000000000000000001 /* Config/macOS.xcconfig */,
 				3766E407277A36F700A9D064 /* Packages */,
 				37AA04D7263435C100353747 /* README.md */,
 				37A4D1B6262227E400A9E9EC /* macOS */,
@@ -403,7 +403,6 @@
 				37A4D1B2262227E400A9E9EC /* Frameworks */,
 				37A4D1B3262227E400A9E9EC /* Resources */,
 				37C9FDFC2628DFDB00AE794D /* ShellScript */,
-				37C9FDFA2628DDB900AE794D /* ShellScript */,
 				37AF82BA2630EAC200931F2C /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -443,8 +442,9 @@
 		37A4D1A1262227E300A9E9EC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 2710;
 				TargetAttributes = {
 					37A4D1AC262227E400A9E9EC = {
 						CreatedOnToolsVersion = 12.5;
@@ -533,24 +533,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		37C9FDFA2628DDB900AE794D /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -eu\n/usr/bin/codesign --force --options=runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY:--}\" \"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/words\"\n";
-		};
+
 		37C9FDFC2628DFDB00AE794D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -560,14 +543,16 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/macOS/Dictionary/WORDS/words",
 			);
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_FOLDER_PATH)/words",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eu\nmkdir -p \"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}\"\ncp \"${SRCROOT}/macOS/Dictionary/WORDS/words\" \"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/words\"\n";
+			shellScript = "set -eu\nstaging=\"${TEMP_DIR}/SignedWORDS\"\nmkdir -p \"$staging\" \"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}\"\ncp \"${SRCROOT}/macOS/Dictionary/WORDS/words\" \"$staging/words\"\n/usr/bin/codesign --force --options=runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY:--}\" \"$staging/words\"\ncp \"$staging/words\" \"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/words\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -644,6 +629,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -675,9 +662,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 0.4.4;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -697,6 +686,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PRODUCT_NAME = iWords;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -706,6 +696,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -737,10 +729,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 0.4.4;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ARCHS = arm64;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -753,6 +746,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.iwords.iwords;
 				PRODUCT_NAME = iWords;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
@@ -812,13 +806,14 @@
 		};
 		37A4D1DB262227E400A9E9EC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA0000000000000000000001 /* macOS.xcconfig */;
+			baseConfigurationReference = AA0000000000000000000001 /* Config/macOS.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "macOS/Supporting files/macOS.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0.7.2;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "macOS/Supporting\\ files/PreviewAssets.xcassets";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -843,13 +838,14 @@
 		};
 		37A4D1DC262227E400A9E9EC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA0000000000000000000001 /* macOS.xcconfig */;
+			baseConfigurationReference = AA0000000000000000000001 /* Config/macOS.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "macOS/Supporting files/macOS.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0.7.2;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "macOS/Supporting\\ files/PreviewAssets.xcassets";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -874,10 +870,11 @@
 		};
 		37CC4360263476D200E60CE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA0000000000000000000001 /* macOS.xcconfig */;
+			baseConfigurationReference = AA0000000000000000000001 /* Config/macOS.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = iWordsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -895,10 +892,11 @@
 		};
 		37CC4361263476D200E60CE9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA0000000000000000000001 /* macOS.xcconfig */;
+			baseConfigurationReference = AA0000000000000000000001 /* Config/macOS.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = iWordsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
