@@ -3180,7 +3180,6 @@ amphibi            amphibi                                                  ADJ 
 amphibol           amphibol                                                 ADJ    1 1 POS          D X X F S amphibious;
 amphiboli          amphiboli                                                N      1 1 F T          X X X E O ambiguity; double meaning;
 amphibologi        amphibologi                                              N      1 1 F T          D X X F S ambiguity; double meaning;
-amphibrach         amphibrach                                               N      2 1 M T          D P X F S poetical foot short-long-short, amphibrach;
 amphibrachys       amphibrach                                               N      2 7 M T          X P X F S poetical foot short-long-short, amphibrach;
 amphibrevis        amphibrev                                                N      3 3 M T          D P X F S poetical foot short-long-short, amphibrach;
 amphicom           amphicom                                                 N      2 6 M T          X X X N O precious stone;
@@ -3410,7 +3409,9 @@ andrachn           andrachn                                                 N   
 Andre              Andre                                                    N      1 8 M N          X X X D E Andrew;
 andrem             andrem                                                   N      1 8 F T          D A X N S plant, purslane (Portulacca oleraca);
 androdamas         androdant                                                N      3 7 M T          X X X N S variety of hematite (native sesquioxide of iron Fe2O3); silver marcasite;
-Androgeos          Androge                                                  N      2 7 M N          X X X C O Androgeos (son of Minos and Pasiphae, whose death was avenged on Athens);
+Androge            Androge                                                  N      2 1 M P          X X X C O Androgeos (son of Minos and Pasiphae; death avenged on Athens); (see Androgeo);
+Androgeo           Androgon                                                 N      2 7 M P          X X X C O Androgeos (son of Minos and Pasiphae; death avenged on Athens); (see Androgeo);
+Androgeon          Androgon                                                 N      3 7 M P          X X X C O Androgeos (son of Minos and Pasiphae; death avenged on Athens); (see Androgeo);
 Androgyn           Androgyn                                                 N      1 6 F P          X X X F O masculine heroic woman; (nickname given to a mannish woman/tomboy);
 androgyn           androgyn                                                 N      2 1 M P          X X X C O hermaphrodite, person of indeterminate sex;
 andron             andron                                                   N      3 1 M T          X X X E O corridor, hallway, aisle, passage; men's apartment in a house;
@@ -6863,12 +6864,12 @@ botr               botr                                                     N   
 botrio             botrion                                                  N      3 1 M T          D A X F S bunch/cluster of grapes;
 botronat           botronat                                                 N      4 1 M T          D X X E S woman's hair ornament in form of a cluster of grapes;
 botruos            botruos                                                  ADJ    1 1 POS          D A X F S full of clusters;
-botry              botry                                                    N      2 8 N T          X B X N O kind of medicine; (prepared from excrements L+S);
 botryitis          botryitid                                                N      3 9 F T          X X X E O kind of precious stone/calamine; [cadmia ~ => grape/cluster-shaped zinc oxide];
 botryo             botryon                                                  N      3 1 M T          X A X F O bunch/cluster of grapes;
 botryodes          botryod                                                  ADJ    3 1 POS          D X X F S in form of a cluster of grapes;
 botryon            botryon                                                  N      3 1 M T          X A X F O bunch/cluster of grapes;
-botrys             botry                                                    N      2 7 M T          X A X F O plant similar to wormwood/mugwort; (also called artemisia);
+botrys             botr                                                     N      2 8 N T          X B X N L kind of medicine; (prepared from excrements L+S);
+botrys             botr                                                     N      2 7 M T          X A X F O plant similar to wormwood/mugwort; (also called artemisia);
 botul              botul                                                    N      2 1 M T          X X X D O sausage; black pudding; stomach filled with delicacies (haggis?); rude word;
 botulari           botulari                                                 N      2 4 M P          X X X F O sausage seller/maker;
 botulism           botulism                                                 N      2 1 M T          G B X E K botulism;
@@ -6880,7 +6881,7 @@ bov                bov                zzz                zzz                V   
 bovari             bovari                                                   ADJ    1 1 POS          X A X E O of oxen/cattle; [forum boarium => cattle market at Rome];
 bovatim                                                                     ADV    POS              X A X F O in manner of cattle/oxen/cows;
 bovicidi           bovicidi                                                 N      2 2 N T          D A X E S slaughtering of cattle;
-bovid              bovid                                                    N      1 1 F T          G X X E K bovidé;
+bovid              bovid                                                    N      1 1 F T          G X X E K bovid;
 bovil              bovil                                                    ADJ    3 2 POS          X A X F O of/connected with cattle;
 bovile             bovil                                                    N      3 4 N T          X A X E O cattle-shed, stall for cattle/oxen;
 bovill             bovill                                                   ADJ    1 1 POS          X A X F O of/consisting of cattle/oxen/cows;
@@ -9400,9 +9401,7 @@ cheloni            cheloni                                                  N   
 cheloni            cheloni                                                  N      2 2 N T          X X X F O socket-piece of a windlass/crane; one of the cheeks; plant, cyclaminos (L+S);
 cheloni            cheloni                                                  N      2 2 N T          F X X E K staple;
 chelonitis         chelonitid                                               N      3 1 F T          X X X N O precious stone; (like a tortoise L+S);
-chely              chely                                                    N      2 8 N T          X A X N S shell of horned tortoise;
 chelydr            chelydr                                                  N      2 1 M T          X A X D O venomous water-snake;
-chelys             chely                                                    N      2 7 F T          X A X C O tortoise; lyre/harp (made originally from a tortoise shell); constellation Lyra;
 chem               chem                                                     N      1 1 F T          X A X N O bi-valve shellfish, clam; cockle (L+S);
 chem               chem                                                     N      1 1 F T          D S X F S liquid measure; (one third of a mystrum, one 48th of a sextarius/pint);
 chemi              chemi                                                    N      1 1 F T          G S X E K chemistry;
@@ -9641,7 +9640,7 @@ chrysomall         chrysomall                                               ADJ 
 chrysomel          chrysomel                                                N      2 2 N T          X A X N O variety of quince;
 chrysomelin        chrysomelin                                              ADJ    1 1 POS          X A X N O variety of quince (w/mala);
 chrysopast         chrysopast                                               N      2 1 F T          D X X F S species of topaz;
-chrysophrys        chrysophry                                               N      2 7 F T          X A X E O fish; (gilt-head? Sparus aurata);
+chrysophrys        chrysophr                                                N      2 7 F T          X A X E O fish; (gilt-head? Sparus aurata);
 chrysopis          chrysopid                                                N      3 1 F T          X X X N O unidentified precious stone; precious topaz (L+S);
 chrysopras         chrysopras                                               N      2 1 M T          F X X C E precious stone, chrysoprase; (golden-green beryl and like);
 chrysopras         chrysopras                                               N      2 2 N T          X X X C O precious stone, chrysoprase; (golden-green beryl and like);
@@ -17569,7 +17568,7 @@ diazoma            diazomat                                                 N   
 dibal              dibal              dibalav            dibalat            V      1 1 TRANS        X X X F O blab; bleat out;
 dibaph             dibaph                                                   N      1 1 F T          X X X N O twice-dyed robe; scarlet striped w/purple robe (of high magistrate L+S);
 dibaph             dibaph                                                   ADJ    1 1 POS          X X X N O twice-dyed; (like robe of magistrater); scarlet striped w/purple (L+S);
-dibrachys          dibrach                                                  N      2 7 F T          X P X E O dibrach, pyrrhic, metrical foot consisting of two short syllables;
+dibrachys          dibrach                                                  N      2 7 M T          X P X E O dibrach, pyrrhic, metrical foot consisting of two short syllables;
 dibucin            dibucin            dibucav            dibucat            V      1 1 INTRANS      X X X E S trumpet forth; trumpet in different direction;
 dic                dic                                                      N      1 1 F T          X L X E O lawsuit; legal action; judicial process (L+S);
 dic                dic                dicav              dicat              V      1 1 TRANS        X X X B O dedicate/consecrate; deify; devote; attach to another state; assign; show;
@@ -17976,7 +17975,7 @@ dipter             dipter                                                   ADJ 
 dipter             dipter                                                   ADJ    2 8 POS          X T H F O having double row of columns all around; with two wings (L+S);
 diptheri           diptheri                                                 N      1 8 M T          X X H F O tough skin, goatskin; old man;
 dipthong           dipthong                                                 N      2 1 F T          X G X F O diphthong;
-diptot             diptot                                                   N       2 2 N T         D G X E S nouns (usu. pl.) having only two cases;
+diptot             diptot                                                   N      2 2 N T          D G X E S nouns (usu. pl.) having only two cases;
 diptych            diptych                                                  N      2 2 N T          D X H E S writing tablet of two leaves (pl.); double shell of oyster;
 diptych            diptych                                                  N      2 8 N T          F X H E E diptych; list of commemorations, register of  those  commemorated by  Church;.
 dipyr              dipyr                                                    ADJ    1 1 POS          X X X F O twice burnt; twice fired; (applied to encaustic painting);
@@ -18708,7 +18707,7 @@ ecfund             ecfund             ecfud              ecfus              V   
 echeneis           echeneid                                                 N      3 1 F T          X A X E C sucking fish, the remora;
 echidn             echidn                                                   N      1 1 F T          X X X D X serpent, viper;
 echin              echin                                                    N      2 1 M T          X X X E C edible sea-urchin; copper dish;
-echo               ech                                                      N      2 7 F T          X X X B O echo; (nymph); repeating words/phrases; same phrase at start and end of speech;
+echo               ech                                                      N      4 4 F T          X X X B O echo; (nymph); repeating words/phrases; same phrase at start and end of speech;
 echographi         echographi                                               N      1 1 F T          H S X E K scan;
 eclecticism        eclecticism                                              N      2 1 M T          G X X E K eclecticism;
 eclectism          eclectism                                                N      2 1 M T          G X X E K eclecticism;
@@ -26928,7 +26927,7 @@ milit              milit              militav            militat            V   
 militans           militant                                                 N      3 3 M P          F W X E E military man; soldier, warrior;
 militans           militant                                                 ADJ    3 1 POS          F X X E E militant;
 militar            militar                                                  ADJ    3 2 POS          X W X B O military; of/used by the army/war/soldiers; martial; soldierly; warlike;
-militari           militari                                                 N       2 2 N T         F W X E M knighthood (pl.);
+militari           militari                                                 N      2 2 N T          F W X E M knighthood (pl.);
 militari           militari                                                 ADJ    1 1 POS          X W X F O military; soldier-like; martial; soldierly; warlike;
 militarie                                                                   ADV    POS              X W X F S in a military or soldier-like manner; knightly (Latham);
 militaris          militar                                                  N      3 3 M P          X W X C S military man; soldier, warrior;
@@ -32436,7 +32435,6 @@ pyct               pyct                                                     N   
 pyel               pyel                                                     N      2 1 M T          F X X E K tub;
 pyg                pyg                                                      N      1 1 F T          X B X E S rump, buttocks; (usu. pl.); (pure Latin nates);
 pygarg             pygarg                                                   N      2 1 M T          X A X E O creature with white rump, pygarg; kind of antelope (addax?); kind of eagle/hawk;
-pygarg             pygarg                                                   N      2 7 M T          X A X E W creature with white rump, pygarg; kind of antelope (addax?); kind of eagle/hawk;
 pylor              pylor                                                    N      2 1 M T          G B X E K pylorus, lower orifice of stomach, opening from stomach to duodenum;
 pyr                pyr                                                      N      1 1 F T          X X X D X funeral pile, pyre;
 pyramis            pyramid                                                  N      3 9 F T          X X X D X pyramid;
@@ -37497,7 +37495,7 @@ trabe              trabe                                                    N   
 trabeat            trabeat                                                  ADJ    1 1 POS          X X X E C clad in the trabea; (white robe with scarlet stripes and purple seam for king);
 trabes             trab                                                     N      3 3 F T          X X X D X tree-trunk, beam, timber; ship;
 trabs              trab                                                     N      3 1 F T          X X X B X tree trunk; log, club, spear; beam, timber, rafter; ship, vessel; roof, house;
-trabuc             trabuc                                                   N      2 1 M T          G W X E K trébuchet (machine of war);
+trabuc             trabuc                                                   N      2 1 M T          G W X E K trebuchet (machine of war);
 tract              tract                                                    N      4 1 M T          X X X D X dragging or pulling along; drawing out; extent; tract, region; lengthening;
 tract              tract              tractav            tractat            V      1 1 X            X X X B X draw, haul, pull, drag about; handle, manage, treat, discuss;
 tractabil          tractabil                                                ADJ    3 2 POS          X X X D X manageable; tractable; easy to deal with;
@@ -37711,8 +37709,7 @@ trias              triad                                                    N   
 trib               trib                                                     N      4 1 F T          X X X D X third part of the people; tribe, hereditary division (Ramnes, Tities, Luceres);
 tribas             tribad                                                   N      3 1 F P          X X X E O lesbian, tribade; (woman engaged in sexual activity w/women); masculine lesbian;
 tribol             tribol                                                   N      2 1 M T          X A X D O spiny plant; caltrop (Tribulus terrestris); (Fagonia cretica, Trapa nayans);
-tribrach           tribrach                                                 N      2 1 M T          X P X E O tribrach; metric foot of three short syllables (UUU);
-tribrachys         tribrachye                                               N      2 7 M T          X P X E O tribrach; metric foot of three short syllables (UUU);
+tribrachys         tribrach                                                 N      2 7 M T          X P X E O tribrach; metric foot of three short syllables (UUU);
 tribrevis          tribrev                                                  N      3 3 M T          X P X E S tribrach; metric foot of three short syllables (UUU);
 tribu              tribu              tribu              tribut             V      3 1 X            X X X B X divide, assign; present; grant, allot, bestow, attribute;
 tribual            tribual                                                  ADJ    3 2 POS          G X X E K tribal;
@@ -38663,7 +38660,7 @@ verecund           verecund           zzz                verecundat         V   
 verecundi          verecundi                                                N      1 1 F T          X X X D X shame; respect; modesty;
 vered              vered                                                    N      2 1 M P          X X X E C swift horse, hunter;
 veredict           veredict                                                 N      2 2 N T          F L X F J true-speaking; truth;
-verend             verend                                                   N      2 2  N T         X B X E O external sexual organs, private parts (pl.); [partes ~ae => private parts];
+verend             verend                                                   N      2 2 N T          X B X E O external sexual organs, private parts (pl.); [partes ~ae => private parts];
 verend             verend                                                   ADJ    1 1 POS          X X X D O awesome, awe inspiring, that is to be regarded with awe or reverence;
 veretill           veretill                                                 N      1 1 F T          X A X F O fish (unidentified); (so called from resemblance to male sex organ);
 veretr             veretr                                                   N      2 2 N T          X B X D O external (usu. male) sex organ; penis;

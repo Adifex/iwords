@@ -32,16 +32,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "37A4D1C7262227E400A9E9EC"
-               BuildableName = "Tests macOS.xctest"
-               BlueprintName = "Tests macOS"
-               ReferencedContainer = "container:iWords.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "37CC4357263476D200E60CE9"
                BuildableName = "iWordsTests.xctest"
                BlueprintName = "iWordsTests"
@@ -77,7 +67,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-NSAnimationSlowMotionOnShift YES"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-prettyResults 1"

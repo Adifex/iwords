@@ -6,7 +6,6 @@
 //
 
 import Cocoa
-import SwiftUI
 import WebKit
 
 enum ResultDisplayMode: Int {
@@ -15,7 +14,9 @@ enum ResultDisplayMode: Int {
 
 class LookupViewController: NSViewController {
 
-    private var webView: WebView!
+    private var webView: WKWebView!
+    private var isPageReady = false
+    private var scaleObservation: NSObjectProtocol?
 
     @IBOutlet weak var welcomeView: NSView!
 
@@ -60,9 +61,16 @@ class LookupViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        webView = WebView(frame: view.bounds)
-        webView.setMaintainsBackForwardList(false)
-        webView.textSizeMultiplier = fontSizeController.textScale
+        let configuration = WKWebViewConfiguration()
+        let delegate = WebViewDelegate()
+        delegate.onLookUpInPerseus = { [weak self] word in
+            self?.lookUpInPerseus(word)
+        }
+        configuration.userContentController.add(delegate, name: "perseus")
+        webViewDelegate = delegate
+        webView = WKWebView(frame: view.bounds, configuration: configuration)
+        webView.pageZoom = CGFloat(fontSizeController.textScale)
+        webView.navigationDelegate = self
         view.addSubview(webView)
         webView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -71,20 +79,21 @@ class LookupViewController: NSViewController {
             webView.topAnchor.constraint(equalTo: view.topAnchor),
             webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
-        webView.drawsBackground = false
-        webView.frameLoadDelegate = self
+        webView.underPageBackgroundColor = .textBackgroundColor
 
         let url = Bundle.main.url(forResource: "results-page", withExtension: "html")!
-        webView.mainFrame.load(URLRequest(url: url))
+        webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
 
         startListeningToUserDefaults()
 
         updateWelcomeViewVisibility()
 
-        NotificationCenter.default.addObserver(forName: .textScaleDidChange,
+        scaleObservation = NotificationCenter.default.addObserver(forName: .textScaleDidChange,
                                                object: FontSizeController.shared,
-                                               queue: nil) { [weak self] notification in
-            self?.webView.textSizeMultiplier = notification.userInfo![FontSizeController.scaleUserInfoKey] as! Float
+                                               queue: .main) { [weak self] notification in
+            if let scale = notification.userInfo?[FontSizeController.scaleUserInfoKey] as? Float {
+                self?.webView.pageZoom = CGFloat(scale)
+            }
         }
     }
 
@@ -112,6 +121,7 @@ class LookupViewController: NSViewController {
     }
 
     deinit {
+        if let scaleObservation { NotificationCenter.default.removeObserver(scaleObservation) }
 #if DEBUG
         NSUserDefaultsController.shared.removeObserver(self, forKeyPath: "values.prettyResults")
 #endif
@@ -135,6 +145,7 @@ class LookupViewController: NSViewController {
     }
 
     func showResultsInWebView(_ results: [DictionaryController.Result]) {
+        guard isPageReady else { return }
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         let encoded = try! encoder.encode(results)
@@ -146,20 +157,15 @@ class LookupViewController: NSViewController {
                 prettyFormatOutput: \(String(UserDefaults.standard.bool(forKey: "prettyFormatOutput"))),
             })
             """
-        print(js)
-        webView.stringByEvaluatingJavaScript(from: js)
+        webView.evaluateJavaScript(js) { [weak self] _, error in
+            if let error { self?.presentError(error) }
+        }
     }
 
     func fontChanged() {
         if let results = results {
             updateForResults(results)
         }
-    }
-
-    // Called from JS in web view
-    @objc
-    func webViewDidLoad() {
-        results.map(showResultsInWebView(_:))
     }
 
     func lookUpInPerseus(_ word: String) {
@@ -201,41 +207,20 @@ class LookupViewController: NSViewController {
     private var webViewDelegate: WebViewDelegate?
 }
 
-extension LookupViewController: WebFrameLoadDelegate {
-
-    func webView(_ webView: WebView!, didClearWindowObject windowObject: WebScriptObject!, for frame: WebFrame!) {
-        let delegate = WebViewDelegate()
-        delegate.onWebViewDidLoad = { [unowned self] in
-            self.webViewDidLoad()
-        }
-        delegate.onLookUpInPerseus = { [unowned self] word in
-            self.lookUpInPerseus(word)
-        }
-        windowObject.setValue(delegate, forKey: "iWordsDelegate")
+extension LookupViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        isPageReady = true
+        results.map(showResultsInWebView(_:))
     }
 }
 
-private class WebViewDelegate: NSObject {
-    var onWebViewDidLoad: () -> Void = { }
+private class WebViewDelegate: NSObject, WKScriptMessageHandler {
     var onLookUpInPerseus: (String) -> Void = { _ in }
 
-    @objc
-    func webViewDidLoad() {
-        onWebViewDidLoad()
-    }
-
-    @objc
-    func lookUpInPerseus(_ word: String) {
+    func userContentController(_ userContentController: WKUserContentController,
+                               didReceive message: WKScriptMessage) {
+        guard message.frameInfo.isMainFrame, let word = message.body as? String else { return }
         onLookUpInPerseus(word)
-    }
-
-    override class func isSelectorExcluded(fromWebScript selector: Selector!) -> Bool {
-        switch selector {
-        case #selector(webViewDidLoad), #selector(lookUpInPerseus(_:)):
-            return false
-        default:
-            return true
-        }
     }
 }
 
@@ -254,7 +239,7 @@ extension LookupViewController {
         printInfo.bottomMargin = 24
         printInfo.rightMargin = 24
 
-        webView.mainFrame.frameView.printOperation(with: printInfo).run()
+        webView.printOperation(with: printInfo).run()
     }
 
     @objc
@@ -272,17 +257,15 @@ extension LookupViewController {
     }
 
     func decreaseTextSize() {
-        webView.makeTextSmaller(nil)
-        print("new text size: \(webView.textSizeMultiplier)")
+        fontSizeController.decreaseScale(nil)
     }
 
     func increaseTextSize() {
-        webView.makeTextLarger(nil)
-        print("new text size: \(webView.textSizeMultiplier)")
+        fontSizeController.increaseScale(nil)
     }
 
     func resetTextSize() {
-        webView.textSizeMultiplier = 1
+        fontSizeController.resetScale(nil)
     }
 }
 

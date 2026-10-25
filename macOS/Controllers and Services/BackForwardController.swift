@@ -93,7 +93,7 @@ class BackForwardController: NSObject {
             return
         }
         // If user holds shift, go back in new window
-        if NSApp.currentEventModifierFlags.contains(.shift),
+        if (NSApp.currentEvent?.modifierFlags.contains(.shift) ?? false),
             let delegate = delegate,
             let backItem = backItem {
             delegate.backForwardController(self, performAlternateNavigationToDisplayQuery: backItem)
@@ -116,7 +116,7 @@ class BackForwardController: NSObject {
             return
         }
         // If user holds shift, go back in new window
-        if NSApp.currentEventModifierFlags.contains(.shift),
+        if (NSApp.currentEvent?.modifierFlags.contains(.shift) ?? false),
             let delegate = delegate,
             let forwardItem = forwardItem {
             delegate.backForwardController(self, performAlternateNavigationToDisplayQuery: forwardItem)

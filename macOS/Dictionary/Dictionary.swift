@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Flow
 
 struct DWError: LocalizedError, Identifiable, CustomNSError {
     let id = UUID()
@@ -115,14 +114,18 @@ class Dictionary {
     }
 
     deinit {
-        process?.terminate()
+        timer?.invalidate()
+        outputPipe?.fileHandleForReading.readabilityHandler = nil
+        errorPipe?.fileHandleForReading.readabilityHandler = nil
+        process?.terminationHandler = nil
+        if process?.isRunning == true { process?.terminate() }
     }
 
     static func sanitize(input: String) -> String? {
         let trimmed = input
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .trimmingCharacters(in: CharacterSet(["#", "!", "@", "~"]))
-        return trimmed.count > 1 ? trimmed : nil
+        return trimmed.isEmpty ? nil : trimmed
     }
 
     // MARK: - Methods
@@ -167,7 +170,7 @@ class Dictionary {
                        direction: Direction,
                        options: Options,
                        completion: @escaping (Result<String?, DWError>) -> Void) {
-        guard input.trimmingCharacters(in: .whitespacesAndNewlines).count > 1 else {
+        guard let input = Self.sanitize(input: input) else {
             completion(.success(nil))
             return
         }
@@ -176,20 +179,23 @@ class Dictionary {
             return
         }
 
-        func write(_ str: String) {
-            inputPipe!.fileHandleForWriting.write(str.data(using: .utf8)!)
+        guard !input.contains(where: \.isNewline) else {
+            completion(.failure(DWError("Please look up one word at a time.")))
+            return
         }
-
-        switch direction {
-        case .latinToEnglish:
-            write("~L\n")
-        case .englishToLatin:
-            write("~E\n")
+        if process?.isRunning != true { startProcess() }
+        guard let process, process.isRunning, let inputPipe else {
+            completion(.failure(DWError("Could not start the dictionary engine.")))
+            return
         }
-        write(input)
-        write("\n")
-
         self.activeCompletionHandler = completion
+        let command = direction == .latinToEnglish ? "~L" : "~E"
+        do {
+            try inputPipe.fileHandleForWriting.write(contentsOf: Data("\(command)\n\(input)\n".utf8))
+        } catch {
+            complete(with: .failure(DWError("Could not send the lookup: \(error.localizedDescription)")))
+            return
+        }
 
         timer = .scheduledTimer(withTimeInterval: 5, repeats: false, block: { [weak self] timer in
             guard let self = self else {
@@ -199,44 +205,43 @@ class Dictionary {
                 return
             }
 
-            self.restartProcess()
-
             self.complete(with: .failure(DWError("The operation timed out. Please try again.")))
+            self.restartProcess()
         })
     }
 
     // MARK: - Private methods
 
     private var tempData = Data()
-    private func handleNewData(from fileHandle: FileHandle) {
-        let newData = fileHandle.availableData
+    private func handleNewData(_ newData: Data) {
+        precondition(Thread.isMainThread)
         tempData += newData
+        guard tempData.count <= 4 * 1024 * 1024 else {
+            complete(with: .failure(DWError("Dictionary output exceeded its size limit.")))
+            restartProcess()
+            return
+        }
 
         // Always prefix of an English-to-Latin result
         let englishToLatinPrefix = "Language changed to ENGLISH_TO_LATIN\nInput a single English word (+ part of speech - N, ADJ, V, PREP, . .. )\n\n=>"
         // Always prefix of a Latin-to-English result
         let latinToEnglishPrefix = "Language changed to LATIN_TO_ENGLISH\n\n=>"
 
-        guard let tempDataString = String(data: tempData, encoding: .utf8) else {
-            fatalError()
-        }
+        // A pipe read may end in the middle of a UTF-8 character.
+        guard let tempDataString = String(data: tempData, encoding: .utf8) else { return }
 
         if case let cmp = tempDataString.components(separatedBy: englishToLatinPrefix),
            cmp.count > 1,
            let lastCmp = cmp.last,
            lastCmp.hasSuffix("\n=>") {
             tempData.removeAll()
-            DispatchQueue.main.async {
-                self.handleDefinitionResult(lastCmp)
-            }
+            handleDefinitionResult(lastCmp)
         } else if case let cmp = tempDataString.components(separatedBy: latinToEnglishPrefix),
                   cmp.count > 1,
                   let lastCmp = cmp.last,
                   lastCmp.hasSuffix("\n=>") {
             tempData.removeAll()
-            DispatchQueue.main.async {
-                self.handleDefinitionResult(lastCmp)
-            }
+            handleDefinitionResult(lastCmp)
         }
     }
 
@@ -284,20 +289,22 @@ class Dictionary {
     private func restartProcess() {
         complete(with: .failure(DWError("Process restarted")))
 
-        process?.terminate()
+        outputPipe?.fileHandleForReading.readabilityHandler = nil
+        errorPipe?.fileHandleForReading.readabilityHandler = nil
+        process?.terminationHandler = nil
+        if process?.isRunning == true { process?.terminate() }
         process = nil
-
+        tempData.removeAll()
         startProcess()
     }
 
     private func startProcess() {
-        guard process == nil else {
-            fatalError("Process already exists")
-        }
+        guard process?.isRunning != true else { return }
+        tempData.removeAll()
 
         let p = Process()
         p.currentDirectoryURL = workingDir
-        p.launchPath = executablePath
+        p.executableURL = executableURL
         p.arguments = []
         outputPipe = Pipe()
         errorPipe = Pipe()
@@ -308,23 +315,35 @@ class Dictionary {
 
         let outputFileHandle = outputPipe!.fileHandleForReading
 
-        outputFileHandle.readabilityHandler = { [weak self] fh in
-            self?.handleNewData(from: fh)
+        outputFileHandle.readabilityHandler = { [weak self, weak p] fh in
+            let data = fh.availableData
+            if data.isEmpty { fh.readabilityHandler = nil; return }
+            DispatchQueue.main.async {
+                guard let self, let p, self.process === p else { return }
+                self.handleNewData(data)
+            }
+        }
+        // Drain stderr so a diagnostic cannot fill the pipe and stall WORDS.
+        errorPipe?.fileHandleForReading.readabilityHandler = { fh in
+            let data = fh.availableData
+            if data.isEmpty { fh.readabilityHandler = nil }
         }
 
         process = p
 
-        p.terminationHandler = { [weak self] process in
-            guard let self = self else { return }
-
-            if process.terminationStatus != SIGTERM {
-                DispatchQueue.main.async {
-                    self.complete(with: .failure(DWError("Process failed with exit code \(process.terminationStatus)")))
-                }
-                return
+        p.terminationHandler = { [weak self] endedProcess in
+            DispatchQueue.main.async {
+                guard let self, self.process === endedProcess else { return }
+                self.process = nil
+                self.complete(with: .failure(DWError("Dictionary engine exited (\(endedProcess.terminationStatus)).")))
             }
         }
 
-        p.launch()
+        do {
+            try p.run()
+        } catch {
+            process = nil
+            NSLog("Dictionary engine launch failed: %@", error.localizedDescription)
+        }
     }
 }

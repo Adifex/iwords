@@ -13,11 +13,8 @@
 		37126CF4278A035B009BB010 /* DictionaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37126CF3278A035B009BB010 /* DictionaryController.swift */; };
 		37192C612870D7910063471D /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 37192C602870D7910063471D /* help.html */; };
 		37192C622870D7910063471D /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 37192C602870D7910063471D /* help.html */; };
-		373AECBD272E22CB0021A393 /* Difference in Frameworks */ = {isa = PBXBuildFile; productRef = 373AECBC272E22CB0021A393 /* Difference */; };
-		373AECBF272E22D90021A393 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373AECBE272E22D90021A393 /* Utils.swift */; };
 		373AECC3272EB26F0021A393 /* PreviewAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 373AECC0272EB0160021A393 /* PreviewAssets.xcassets */; };
 		373AECC8272EF26D0021A393 /* PreviewAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 373AECC0272EB0160021A393 /* PreviewAssets.xcassets */; };
-		374355BC279CA10C0052CFBA /* VisualEffectBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374355BB279CA10C0052CFBA /* VisualEffectBackground.swift */; };
 		3760B37727B044AE00F81F38 /* DictionarySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3760B37627B044AE00F81F38 /* DictionarySettingsViewController.swift */; };
 		3760B37927B04A4600F81F38 /* DictionaryRelocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3760B37827B04A4600F81F38 /* DictionaryRelocator.swift */; };
 		3760B37B27B07B3400F81F38 /* DictionarySettingsHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3760B37A27B07B3400F81F38 /* DictionarySettingsHelpViewController.swift */; };
@@ -25,14 +22,12 @@
 		3760B38227B0992500F81F38 /* UpdateSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3760B38027B0992500F81F38 /* UpdateSettingsViewController.swift */; };
 		3760B38627B169C700F81F38 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 3760B38527B169C700F81F38 /* Sparkle */; };
 		3760B38C27B1E7DD00F81F38 /* DictionaryParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3760B38B27B1E7DD00F81F38 /* DictionaryParser.swift */; };
-		3766E410277A3CC700A9D064 /* DWUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 3766E40F277A3CC700A9D064 /* DWUtils */; };
 		37679DFC262C779E003D15E1 /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37679DFB262C779E003D15E1 /* HistoryController.swift */; };
 		37679DFE262C860B003D15E1 /* BackForwardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37679DFD262C860B003D15E1 /* BackForwardController.swift */; };
 		37679E00262CC87C003D15E1 /* WindowRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37679DFF262CC87C003D15E1 /* WindowRestoration.swift */; };
 		37852AD0278B3EC500ACFFE6 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37852ACF278B3EC500ACFFE6 /* LoadingView.swift */; };
 		37852AD2278B45ED00ACFFE6 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37852AD1278B45ED00ACFFE6 /* Dictionary.swift */; };
 		378C811527D40FD000DAC83A /* results-page.html in Resources */ = {isa = PBXBuildFile; fileRef = 378C811427D40FD000DAC83A /* results-page.html */; };
-		378C811727D465F400DAC83A /* lodash.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 378C811627D465F400DAC83A /* lodash.min.js */; };
 		378C811927D52FC300DAC83A /* FontSizeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C811827D52FC300DAC83A /* FontSizeController.swift */; };
 		378E51FA2795C9FF00730204 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 378E51F92795C9FF00730204 /* Settings.storyboard */; };
 		378E51FC2795D57600730204 /* InterfaceSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378E51FB2795D57600730204 /* InterfaceSettingsViewController.swift */; };
@@ -43,7 +38,6 @@
 		37A4D2532622401D00A9E9EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4D2512622401900A9E9EC /* AppDelegate.swift */; };
 		37A4D2592622412000A9E9EC /* LookupWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4D256262240D000A9E9EC /* LookupWindowController.swift */; };
 		37AA04D8263435C100353747 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 37AA04D7263435C100353747 /* README.md */; };
-		37AA04DA2634485200353747 /* DefinitionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AA04D92634485200353747 /* DefinitionParser.swift */; };
 		37AB5A142626713500118674 /* ADDONS.LAT in Resources */ = {isa = PBXBuildFile; fileRef = 37AB5A062626713400118674 /* ADDONS.LAT */; };
 		37AB5A152626713500118674 /* STEMFILE.GEN in Resources */ = {isa = PBXBuildFile; fileRef = 37AB5A072626713400118674 /* STEMFILE.GEN */; };
 		37AB5A172626713500118674 /* INFLECTS.LAT in Resources */ = {isa = PBXBuildFile; fileRef = 37AB5A092626713400118674 /* INFLECTS.LAT */; };
@@ -56,15 +50,12 @@
 		37AB5A1E2626713500118674 /* CHECKEWD. in Resources */ = {isa = PBXBuildFile; fileRef = 37AB5A102626713500118674 /* CHECKEWD. */; };
 		37AB5A1F2626713500118674 /* DICTFILE.GEN in Resources */ = {isa = PBXBuildFile; fileRef = 37AB5A112626713500118674 /* DICTFILE.GEN */; };
 		37AB5A202626713500118674 /* STEMLIST.GEN in Resources */ = {isa = PBXBuildFile; fileRef = 37AB5A122626713500118674 /* STEMLIST.GEN */; };
-		37AB5A22262671D200118674 /* words in Resources */ = {isa = PBXBuildFile; fileRef = 37AB5A21262671D200118674 /* words */; };
 		37AB5A242626733300118674 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 37AB5A232626733300118674 /* Credits.rtf */; };
 		37B089FB272F237400932567 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 37B089FD272F237400932567 /* Intents.intentdefinition */; };
 		37B0F0D628220FE400F23C6D /* SharedFontSizeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B0F0D528220FE400F23C6D /* SharedFontSizeController.swift */; };
 		37BE70C2279341D600A041D2 /* SearchBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BE70C1279341D600A041D2 /* SearchBarViewController.swift */; };
 		37BF1C01262B7908003C4A97 /* WORD.MDV in Resources */ = {isa = PBXBuildFile; fileRef = 37BF1C00262B7908003C4A97 /* WORD.MDV */; };
 		37CC4363263476DD00E60CE9 /* DefinitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CC4362263476DD00E60CE9 /* DefinitionTests.swift */; };
-		37CC43662634AB8100E60CE9 /* Parsing in Frameworks */ = {isa = PBXBuildFile; productRef = 37CC43652634AB8100E60CE9 /* Parsing */; };
-		37CC436A2634D81900E60CE9 /* DefinitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CC43692634D81900E60CE9 /* DefinitionView.swift */; };
 		37ECE3322826CBEF0087C94C /* SearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECE3312826CBEF0087C94C /* SearchQuery.swift */; };
 		37EDB2EA27945A4400911BC6 /* AutosizingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EDB2E927945A4400911BC6 /* AutosizingTextField.swift */; };
 /* End PBXBuildFile section */
@@ -99,7 +90,6 @@
 		37192C602870D7910063471D /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
 		371BE240262B3D3100FC1FED /* WordsEntitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WordsEntitlements.plist; sourceTree = "<group>"; };
 		373AECBA272A28660021A393 /* words (macOS)Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "words (macOS)Debug.entitlements"; sourceTree = "<group>"; };
-		373AECBE272E22D90021A393 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		373AECC0272EB0160021A393 /* PreviewAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PreviewAssets.xcassets; sourceTree = "<group>"; };
 		374355BB279CA10C0052CFBA /* VisualEffectBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectBackground.swift; sourceTree = "<group>"; };
 		3760B37627B044AE00F81F38 /* DictionarySettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionarySettingsViewController.swift; sourceTree = "<group>"; };
@@ -108,14 +98,12 @@
 		3760B37C27B07C3C00F81F38 /* Dictionary Settings Help.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "Dictionary Settings Help.rtf"; sourceTree = "<group>"; };
 		3760B38027B0992500F81F38 /* UpdateSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsViewController.swift; sourceTree = "<group>"; };
 		3760B38B27B1E7DD00F81F38 /* DictionaryParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryParser.swift; sourceTree = "<group>"; };
-		3766E408277A36F700A9D064 /* DWUtils */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DWUtils; path = ../../DWUtils; sourceTree = "<group>"; };
 		37679DFB262C779E003D15E1 /* HistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
 		37679DFD262C860B003D15E1 /* BackForwardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackForwardController.swift; sourceTree = "<group>"; };
 		37679DFF262CC87C003D15E1 /* WindowRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowRestoration.swift; sourceTree = "<group>"; };
 		37852ACF278B3EC500ACFFE6 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		37852AD1278B45ED00ACFFE6 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		378C811427D40FD000DAC83A /* results-page.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "results-page.html"; sourceTree = "<group>"; };
-		378C811627D465F400DAC83A /* lodash.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = lodash.min.js; sourceTree = "<group>"; };
 		378C811827D52FC300DAC83A /* FontSizeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeController.swift; sourceTree = "<group>"; };
 		378E51F92795C9FF00730204 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		378E51FB2795D57600730204 /* InterfaceSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceSettingsViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +143,7 @@
 		37CC43692634D81900E60CE9 /* DefinitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionView.swift; sourceTree = "<group>"; };
 		37ECE3312826CBEF0087C94C /* SearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQuery.swift; sourceTree = "<group>"; };
 		37EDB2E927945A4400911BC6 /* AutosizingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutosizingTextField.swift; sourceTree = "<group>"; };
+		AA0000000000000000000001 /* macOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/macOS.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,10 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3760B38627B169C700F81F38 /* Sparkle in Frameworks */,
-				3766E410277A3CC700A9D064 /* DWUtils in Frameworks */,
 				37126CF2278A0030009BB010 /* OrderedCollections in Frameworks */,
-				37CC43662634AB8100E60CE9 /* Parsing in Frameworks */,
-				373AECBD272E22CB0021A393 /* Difference in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,7 +208,6 @@
 			children = (
 				374355B5279C9E770052CFBA /* Search Bar */,
 				37852ACF278B3EC500ACFFE6 /* LoadingView.swift */,
-				378C811627D465F400DAC83A /* lodash.min.js */,
 				378C811427D40FD000DAC83A /* results-page.html */,
 				37A4D24B26223C6D00A9E9EC /* LookupViewController.swift */,
 				37A4D256262240D000A9E9EC /* LookupWindowController.swift */,
@@ -277,7 +262,6 @@
 		3766E407277A36F700A9D064 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				3766E408277A36F700A9D064 /* DWUtils */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -318,6 +302,7 @@
 		37A4D1A0262227E300A9E9EC = {
 			isa = PBXGroup;
 			children = (
+				AA0000000000000000000001 /* macOS.xcconfig */,
 				3766E407277A36F700A9D064 /* Packages */,
 				37AA04D7263435C100353747 /* README.md */,
 				37A4D1B6262227E400A9E9EC /* macOS */,
@@ -386,7 +371,6 @@
 			children = (
 				37CC435C263476D200E60CE9 /* Info.plist */,
 				37CC4362263476DD00E60CE9 /* DefinitionTests.swift */,
-				373AECBE272E22D90021A393 /* Utils.swift */,
 			);
 			path = iWordsTests;
 			sourceTree = "<group>";
@@ -428,9 +412,6 @@
 			);
 			name = "iWords (macOS)";
 			packageProductDependencies = (
-				37CC43652634AB8100E60CE9 /* Parsing */,
-				373AECBC272E22CB0021A393 /* Difference */,
-				3766E40F277A3CC700A9D064 /* DWUtils */,
 				37126CF1278A0030009BB010 /* OrderedCollections */,
 				3760B38527B169C700F81F38 /* Sparkle */,
 			);
@@ -489,8 +470,6 @@
 			);
 			mainGroup = 37A4D1A0262227E300A9E9EC;
 			packageReferences = (
-				37CC43642634AB8100E60CE9 /* XCRemoteSwiftPackageReference "swift-parsing" */,
-				373AECBB272E22CA0021A393 /* XCRemoteSwiftPackageReference "Difference" */,
 				37126CF0278A0030009BB010 /* XCRemoteSwiftPackageReference "swift-collections" */,
 				3760B38427B169C600F81F38 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
@@ -532,13 +511,11 @@
 				37AB5A142626713500118674 /* ADDONS.LAT in Resources */,
 				37AB5A202626713500118674 /* STEMLIST.GEN in Resources */,
 				37AB5A1D2626713500118674 /* EWDSFILE.GEN in Resources */,
-				37AB5A22262671D200118674 /* words in Resources */,
 				37BF1C01262B7908003C4A97 /* WORD.MDV in Resources */,
 				37AA04D8263435C100353747 /* README.md in Resources */,
 				37AB5A152626713500118674 /* STEMFILE.GEN in Resources */,
 				37AB5A1F2626713500118674 /* DICTFILE.GEN in Resources */,
 				37AB5A1E2626713500118674 /* CHECKEWD. in Resources */,
-				378C811727D465F400DAC83A /* lodash.min.js in Resources */,
 				37A4D1D4262227E400A9E9EC /* Assets.xcassets in Resources */,
 				37AB5A1A2626713500118674 /* EWDSLIST.GEN in Resources */,
 			);
@@ -558,6 +535,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		37C9FDFA2628DDB900AE794D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -570,8 +548,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh -x";
-			shellScript = "codesign --force --options=runtime \\\n --sign \"${EXPANDED_CODE_SIGN_IDENTITY_NAME}\" \\\n --entitlements \"${SRCROOT}/macOS/Dictionary/WORDS/WordsEntitlements.plist\" \\\n \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Contents/macOS/words\"\n";
+			shellPath = /bin/sh;
+			shellScript = "set -eu\n/usr/bin/codesign --force --options=runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY:--}\" \"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/words\"\n";
 		};
 		37C9FDFC2628DFDB00AE794D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -589,7 +567,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mkdir \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Contents/MacOS\" \nmv \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Contents/Resources/words\" \\\n \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Contents/MacOS/words\"\n";
+			shellScript = "set -eu\nmkdir -p \"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}\"\ncp \"${SRCROOT}/macOS/Dictionary/WORDS/words\" \"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/words\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -606,11 +584,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				37679DFE262C860B003D15E1 /* BackForwardController.swift in Sources */,
-				374355BC279CA10C0052CFBA /* VisualEffectBackground.swift in Sources */,
-				37CC436A2634D81900E60CE9 /* DefinitionView.swift in Sources */,
 				3760B37727B044AE00F81F38 /* DictionarySettingsViewController.swift in Sources */,
 				378E51FC2795D57600730204 /* InterfaceSettingsViewController.swift in Sources */,
-				37AA04DA2634485200353747 /* DefinitionParser.swift in Sources */,
 				37679DFC262C779E003D15E1 /* HistoryController.swift in Sources */,
 				3760B37927B04A4600F81F38 /* DictionaryRelocator.swift in Sources */,
 				37A4D2532622401D00A9E9EC /* AppDelegate.swift in Sources */,
@@ -640,7 +615,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				37CC4363263476DD00E60CE9 /* DefinitionTests.swift in Sources */,
-				373AECBF272E22D90021A393 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,7 +740,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXCLUDED_ARCHS = arm64;
+				ARCHS = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -791,7 +765,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5TSNJUMDQY;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -817,7 +791,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5TSNJUMDQY;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -838,15 +812,14 @@
 		};
 		37A4D1DB262227E400A9E9EC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA0000000000000000000001 /* macOS.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "macOS/Supporting files/words (macOS)Debug.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "macOS/Supporting files/macOS.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0.7.2;
 				DEVELOPMENT_ASSET_PATHS = "macOS/Supporting\\ files/PreviewAssets.xcassets";
-				DEVELOPMENT_TEAM = 5TSNJUMDQY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -858,7 +831,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.7.2;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.iwords.iwords;
@@ -870,15 +843,14 @@
 		};
 		37A4D1DC262227E400A9E9EC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA0000000000000000000001 /* macOS.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "macOS/Supporting files/macOS.entitlements";
-				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0.7.2;
 				DEVELOPMENT_ASSET_PATHS = "macOS/Supporting\\ files/PreviewAssets.xcassets";
-				DEVELOPMENT_TEAM = 5TSNJUMDQY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -890,7 +862,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.7.2;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.iwords.iwords;
@@ -902,18 +874,17 @@
 		};
 		37CC4360263476D200E60CE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA0000000000000000000001 /* macOS.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 5TSNJUMDQY;
 				INFOPLIST_FILE = iWordsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.danielweiner.iWordsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -924,18 +895,17 @@
 		};
 		37CC4361263476D200E60CE9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA0000000000000000000001 /* macOS.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 5TSNJUMDQY;
 				INFOPLIST_FILE = iWordsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.danielweiner.iWordsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -991,15 +961,7 @@
 			repositoryURL = "https://github.com/apple/swift-collections.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.3;
-			};
-		};
-		373AECBB272E22CA0021A393 /* XCRemoteSwiftPackageReference "Difference" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/krzysztofzablocki/Difference.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.7.4;
 			};
 		};
 		3760B38427B169C600F81F38 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
@@ -1007,15 +969,7 @@
 			repositoryURL = "https://github.com/sparkle-project/Sparkle";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-		37CC43642634AB8100E60CE9 /* XCRemoteSwiftPackageReference "swift-parsing" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-parsing";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.2;
+				minimumVersion = 2.10.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1026,24 +980,10 @@
 			package = 37126CF0278A0030009BB010 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
 		};
-		373AECBC272E22CB0021A393 /* Difference */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 373AECBB272E22CA0021A393 /* XCRemoteSwiftPackageReference "Difference" */;
-			productName = Difference;
-		};
 		3760B38527B169C700F81F38 /* Sparkle */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3760B38427B169C600F81F38 /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
-		};
-		3766E40F277A3CC700A9D064 /* DWUtils */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = DWUtils;
-		};
-		37CC43652634AB8100E60CE9 /* Parsing */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 37CC43642634AB8100E60CE9 /* XCRemoteSwiftPackageReference "swift-parsing" */;
-			productName = Parsing;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

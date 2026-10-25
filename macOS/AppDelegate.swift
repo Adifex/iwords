@@ -7,8 +7,6 @@
 
 import Cocoa
 import Intents
-import DWUtils
-import Flow
 import Sparkle
 
 extension NSFont {
@@ -56,7 +54,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        DebugDefaults.check()
+        // Explicit opt-in for resetting this test app's preferences.
+        #if DEBUG
+        if UserDefaults.standard.bool(forKey: "DWDebug.ClearDefaults"),
+           let identifier = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: identifier)
+        }
+        #endif
 
         setUpFont()
 
@@ -126,19 +130,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
     func saveFont(_ font: NSFont) {
-        NSKeyedArchiver(requiringSecureCoding: true)
-            .then {
-                $0.encode(font, forKey: "font")
-            }
-            .encodedData
-            .do {
-                UserDefaults.standard.set($0, forKey: "font")
-            }
+        let archiver = NSKeyedArchiver(requiringSecureCoding: true)
+        archiver.encode(font, forKey: "font")
+        archiver.finishEncoding()
+        UserDefaults.standard.set(archiver.encodedData, forKey: "font")
     }
 
     @IBAction @objc
     func resetFont(_ sender: Any?) {
-        font = font.dwWithSize(16)
+        font = NSFontManager.shared.convert(font, toSize: 16)
         NSFontManager.shared.setSelectedFont(font, isMultiple: false)
         applyFont(font)
         saveFont(font)
@@ -312,5 +312,12 @@ extension AppDelegate {
     @objc
     func didPresentErrorWithRecovery(_ didRecover: Bool, contextInfo: UnsafeMutableRawPointer?) {
         NSApp.terminate(self)
+    }
+}
+
+// Window cascading uses screen coordinates, with the origin at the bottom left.
+extension NSWindow {
+    var topLeft: NSPoint {
+        NSPoint(x: frame.minX, y: frame.maxY)
     }
 }

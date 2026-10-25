@@ -33,6 +33,7 @@ enum DictionaryRelocator {
                                     isDirectory: true)
             .appendingPathComponent("Dictionary Support",
                                     isDirectory: true)
+            .appendingPathComponent("Engine-1f2f0fb-arm64-v1", isDirectory: true)
     }()
 
     private static let fileNamesToMigrate = [
@@ -60,6 +61,17 @@ enum DictionaryRelocator {
     static func initialize() {
         if wasRelocationPerformed() {
             dictionarySupportURL = _dictionarySupportURL
+        } else if let destination = _dictionarySupportURL,
+                  FileManager.default.fileExists(atPath: destination.deletingLastPathComponent()
+                    .appendingPathComponent("WORD.MDV").path) {
+            // Never load generated Intel-era data into the rebuilt engine.
+            do {
+                try _relocate()
+                try migrateLegacyPreferences(to: destination)
+            } catch {
+                dictionarySupportURL = nil
+                NSLog("Dictionary migration failed; using bundled defaults: %@", error.localizedDescription)
+            }
         }
     }
 
@@ -75,6 +87,27 @@ enum DictionaryRelocator {
         Self.dictionarySupportURL = nil
 
         NotificationCenter.default.post(name: .dictionaryRelocationComplete, object: nil)
+    }
+
+    private static func migrateLegacyPreferences(to destination: URL) throws {
+        let file = destination.appendingPathComponent("WORD.MDV")
+        let legacyFile = destination.deletingLastPathComponent().appendingPathComponent("WORD.MDV")
+        let legacy = try String(contentsOf: legacyFile, encoding: .utf8)
+        let keys: Set<String> = ["DO_MEDIEVAL_TRICKS", "DO_TWO_WORDS", "OMIT_ARCHAIC", "OMIT_MEDIEVAL", "OMIT_UNCOMMON"]
+        var values: [String: String] = [:]
+        for line in legacy.split(whereSeparator: \.isNewline) {
+            let pair = line.split(whereSeparator: \.isWhitespace)
+            if pair.count == 2, keys.contains(String(pair[0])), ["Y", "N"].contains(String(pair[1])) {
+                values[String(pair[0])] = String(pair[1])
+            }
+        }
+        let defaults = try String(contentsOf: file, encoding: .utf8)
+        let merged = defaults.split(whereSeparator: \.isNewline).map { line -> String in
+            guard let key = line.split(whereSeparator: \.isWhitespace).first,
+                  let value = values[String(key)] else { return String(line) }
+            return String(key).padding(toLength: 33, withPad: " ", startingAt: 0) + value
+        }.joined(separator: "\n") + "\n"
+        try merged.write(to: file, atomically: true, encoding: .utf8)
     }
 
     // MARK: Private methods
@@ -111,13 +144,7 @@ enum DictionaryRelocator {
 
             let dstURL = dictionarySupportURL.appendingPathComponent(file, isDirectory: false)
 
-#if DEBUG
-            // If in DEBUG mode, always overwrite WORD.MDV instead of leaving the existing copy, so
-            // that we can easily tweak it for development purposes.
-            if file == "WORD.MDV" {
-                try? fileManager.removeItem(at: dstURL)
-            }
-#endif
+
 
             do {
                 try fileManager.copyItem(at: srcURL, to: dstURL)
