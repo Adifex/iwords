@@ -13,9 +13,10 @@ REVISION = '1f2f0fb0867a896d7b9284a03d615ed635d6f992'
 REPOSITORY = 'https://github.com/mk270/whitakers-words.git'
 SOURCE = ROOT / '.build' / 'words-source'
 DESTINATION = ROOT / 'macOS' / 'Dictionary' / 'WORDS'
-DATA_FILES = ['ADDONS.LAT', 'DICTLINE.GEN', 'INFLECTS.LAT', 'UNIQUES.LAT',
-              'DICTFILE.GEN', 'STEMFILE.GEN', 'INDXFILE.GEN', 'EWDSLIST.GEN',
-              'INFLECTS.SEC', 'EWDSFILE.GEN', 'STEMLIST.GEN', 'CHECKEWD.']
+# Package only runtime data; dictionary-generation inputs and intermediates stay in SOURCE.
+DATA_FILES = ['ADDONS.LAT', 'INFLECTS.LAT', 'UNIQUES.LAT',
+              'DICTFILE.GEN', 'STEMFILE.GEN', 'INDXFILE.GEN',
+              'INFLECTS.SEC', 'EWDSFILE.GEN']
 
 def run(args, **kwargs):
     return subprocess.run(args, check=True, **kwargs)

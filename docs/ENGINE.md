@@ -19,7 +19,7 @@ GNAT_ROOT=/absolute/path/to/toolchain/Payload python3 scripts/build-engine.py
 python3 scripts/test-engine.py
 ```
 
-The build script clones into the disposable, ignored `.build/words-source`, checks out the pinned revision, applies the checked-in patch, builds with the selected Xcode SDK and minimum macOS 14, verifies architecture/linkage, removes toolchain rpaths, signs the engine ad-hoc with hardened runtime, and updates the bundled executable, matching data and manifest. It preserves iWords' `WORD.MDV` protocol configuration. Review and commit those generated changes together when updating the engine. The build checkout is disposable; do not develop upstream changes there.
+The build script clones into the disposable, ignored `.build/words-source`, checks out the pinned revision, applies the checked-in patch, builds with the selected Xcode SDK and minimum macOS 14, verifies architecture/linkage, removes toolchain rpaths, signs the engine ad-hoc with hardened runtime, and updates the bundled executable, matching data and manifest. Only runtime dictionary data is packaged. The source dictionary, intermediate lists and generation diagnostics remain in the disposable build checkout; they are not needed for app lookup or dictionary relocation. It preserves iWords' `WORD.MDV` protocol configuration. Review and commit those generated changes together when updating the engine. The build checkout is disposable; do not develop upstream changes there.
 
 `words-no-trampoline.patch` replaces a nested callback iteration with equivalent direct cursor iteration. GNAT's ARM64 trampoline implementation otherwise fails under macOS hardened runtime. This avoids granting executable-memory exceptions. The patch does not intentionally change linguistic processing.
 

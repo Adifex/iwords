@@ -39,16 +39,12 @@ enum DictionaryRelocator {
     private static let fileNamesToMigrate = [
         "WORD.MDV",
         "ADDONS.LAT",
-        "CHECKEWD.",
         "DICTFILE.GEN",
-        "DICTLINE.GEN",
         "EWDSFILE.GEN",
-        "EWDSLIST.GEN",
         "INDXFILE.GEN",
         "INFLECTS.LAT",
         "INFLECTS.SEC",
         "STEMFILE.GEN",
-        "STEMLIST.GEN",
         "UNIQUES.LAT"
     ]
 
