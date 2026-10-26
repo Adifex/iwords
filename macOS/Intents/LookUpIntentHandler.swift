@@ -21,7 +21,7 @@ extension Dictionary.Direction {
 
 @available(macOS 12.0, *)
 class LookUpIntentHandler: NSObject, LookUpIntentHandling {
-    lazy var dictionaryController = DictionaryController(direction: .latinToEnglish)
+    @MainActor lazy var dictionaryController = DictionaryController(direction: .latinToEnglish)
 
     func handle(intent: LookUpIntent, completion: @escaping (LookUpIntentResponse) -> Void) {
         guard let direction = Dictionary.Direction(intent.direction) else {
@@ -30,17 +30,19 @@ class LookUpIntentHandler: NSObject, LookUpIntentHandling {
         }
 
         let sanitizedTerms = intent.query?.map { Dictionary.sanitize(input: $0) ?? "" } ?? []
-        dictionaryController.direction = direction
-        dictionaryController.search(terms: sanitizedTerms) { result in
-            switch result {
-            case .failure(let error):
-                completion(LookUpIntentResponse(code: .failure, userActivity: nil))
-            case .success(let results):
-                let response = LookUpIntentResponse(code: .success, userActivity: nil)
-                response.definition = results
-                    .map(\.raw)
-                    .map { $0 ?? "No result" }
-                completion(response)
+        Task { @MainActor in
+            dictionaryController.direction = direction
+            dictionaryController.search(terms: sanitizedTerms) { result in
+                switch result {
+                case .failure:
+                    completion(LookUpIntentResponse(code: .failure, userActivity: nil))
+                case .success(let results):
+                    let response = LookUpIntentResponse(code: .success, userActivity: nil)
+                    response.definition = results
+                        .map(\.raw)
+                        .map { $0 ?? "No result" }
+                    completion(response)
+                }
             }
         }
     }

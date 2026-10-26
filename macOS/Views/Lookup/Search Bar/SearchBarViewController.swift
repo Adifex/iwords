@@ -58,6 +58,8 @@ class SearchBarViewController: NSTitlebarAccessoryViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        searchField.setAccessibilityIdentifier("lookupSearchField")
+        goButton.setAccessibilityIdentifier("lookupSearchButton")
         searchField.delegate = self
 
         startListeningToUserDefaults()

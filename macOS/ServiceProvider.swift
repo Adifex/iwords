@@ -8,6 +8,7 @@
 import AppKit
 
 @objc
+@MainActor
 class ServiceProvider: NSObject {
     func lookUp(_ text: String, direction: Dictionary.Direction) {
         let frontmostWindow = NSApp.orderedWindows.first ?? {

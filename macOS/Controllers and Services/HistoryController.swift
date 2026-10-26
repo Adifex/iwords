@@ -14,6 +14,7 @@ extension NSUserInterfaceItemIdentifier {
 // MARK: - HistoryDelegate
 
 @objc
+@MainActor
 protocol HistoryDelegate {
     func historyController(
         _ historyController: HistoryController,
@@ -26,6 +27,7 @@ protocol HistoryDelegate {
 
 private let MAX_HISTORY = 50
 
+@MainActor
 class HistoryController: NSObject {
     @IBOutlet
     weak var delegate: HistoryDelegate?

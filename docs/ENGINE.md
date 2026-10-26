@@ -23,11 +23,15 @@ The build script clones into the disposable, ignored `.build/words-source`, chec
 
 `words-no-trampoline.patch` replaces a nested callback iteration with equivalent direct cursor iteration. GNAT's ARM64 trampoline implementation otherwise fails under macOS hardened runtime. This avoids granting executable-memory exceptions. The patch does not intentionally change linguistic processing.
 
-The portable regression runner uses the five pinned upstream fixtures and upstream header/footer and whitespace normalization. It runs the packaged, hardened-runtime-signed engine in a temporary data directory. Xcode tests additionally cover the actual asynchronous app protocol, repeated requests in both directions, single letters, irregular forms, enclitics, unknown input and engine restart.
+The portable regression runner uses the five pinned upstream fixtures and upstream header/footer and whitespace normalization. It runs the packaged, hardened-runtime-signed engine in a temporary data directory. Xcode tests additionally cover the actual asynchronous app protocol, repeated requests in both directions, single letters, irregular forms, enclitics, unknown input, serialized requests, cancellation, timeout, output limits and child-process cleanup.
 
 ## Data migration
 
-Writable dictionaries live under `Application Support/iWords/Dictionary Support/Engine-1f2f0fb-arm64-v1`. Existing Intel-era data is left intact. When migrating an old writable dictionary, fresh bundled engine data is copied and supported user filtering preferences are carried over; protocol flags retain current defaults. Increment this versioned directory when future engine changes require incompatible generated data.
+Preferences live under `Application Support/iWords/Settings-v1/WORD.MDV`, with an atomic `migration.json` recording schema version and whether custom preferences are enabled. The migration checks the previous ARM directory first, then the Intel-era directory, and carries over only the five supported Y/N filtering preferences. Protocol flags come from the current bundled defaults. Old files are preserved. Unknown schema versions are rejected without overwriting them; interrupted migrations can be retried.
+
+Dictionary data stays in the signed app bundle. Each lookup batch receives a temporary workspace with links to bundled data and a copy of its settings snapshot. The adapter removes that workspace after completion, failure or cancellation. Disabling custom settings preserves saved preferences and records the disabled state so legacy settings are not silently re-imported on launch.
+
+`WordsEngine` holds an explicit FIFO gate across actor suspension points. Queued requests can cancel without waiting for the active request. Each process has a five-second response deadline and a four-MiB combined stdout/stderr limit. Reads use fixed-size nonblocking buffers; completion requires the response prompt after the language-change prompt. Cleanup sends termination, escalates to SIGKILL after 200 ms if necessary, and reaps the child before advancing the queue. Starting a new process per word trades launch overhead for isolation between requests.
 
 ## Accessory utility provenance
 

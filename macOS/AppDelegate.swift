@@ -20,8 +20,20 @@ extension NSNotification.Name {
 let SelectedFontDidChangeFontKey = "font"
 
 @main
+@MainActor
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     static var shared: AppDelegate!
+
+    // Own controllers explicitly rather than relying on a delegate retain cycle.
+    private var lookupWindows: [LookupWindowController] = []
+
+    func retainWindow(_ controller: LookupWindowController) {
+        if !lookupWindows.contains(where: { $0 === controller }) { lookupWindows.append(controller) }
+    }
+
+    func releaseWindow(_ controller: LookupWindowController) {
+        lookupWindows.removeAll { $0 === controller }
+    }
 
     @IBOutlet weak var latinToEnglishItem: NSMenuItem!
     @IBOutlet weak var englishToLatinItem: NSMenuItem!
@@ -47,6 +59,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         NSApp.keyWindow?.windowController as? LookupWindowController
     }
 
+    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool { true }
+
     func applicationWillFinishLaunching(_ notification: Notification) {
         DictionaryRelocator.initialize()
 
@@ -68,14 +82,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         startListeningToUserDefaults()
         #endif
 
-        if NSApp.windows.isEmpty {
+        if !NSApp.windows.contains(where: { $0.isVisible && $0.windowController is LookupWindowController }) {
             newWindow(self)
         }
 
         windowDidBecomeKey = NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification,
                                                              object: nil,
                                                              queue: nil) { [weak self] notification in
-            self?.updateDirectionItemsState()
+            Task { @MainActor [weak self] in self?.updateDirectionItemsState() }
         }
 
         windowDidCloseObservation = NotificationCenter.default.addObserver(forName: NSWindow.willCloseNotification,

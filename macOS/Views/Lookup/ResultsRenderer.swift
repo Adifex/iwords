@@ -3,7 +3,7 @@ import AppKit
 /// Converts dictionary data directly into native text, without a markup intermediate.
 enum ResultsRenderer {
     static func render(
-        _ results: [DictionaryController.Result],
+        _ results: [LookupResult],
         scale: CGFloat,
         formatted: Bool,
         showInflections: Bool,

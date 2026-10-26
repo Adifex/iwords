@@ -8,6 +8,7 @@
 import AppKit
 
 // For IB use. Proxies everything to the shared FontSizeController object.
+@MainActor
 class SharedFontSizeController: NSObject, NSMenuItemValidation {
 
     // MARK: Properties
@@ -28,7 +29,7 @@ class SharedFontSizeController: NSObject, NSMenuItemValidation {
         NotificationCenter.default.addObserver(forName: .textScaleDidChange,
                                                object: sharedController,
                                                queue: nil) { [weak self] notification in
-            self?.updateSegmentedControl()
+            Task { @MainActor [weak self] in self?.updateSegmentedControl() }
         }
     }
 

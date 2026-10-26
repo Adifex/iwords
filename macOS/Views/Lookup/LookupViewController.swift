@@ -19,7 +19,7 @@ class LookupViewController: NSViewController {
 
     var fontSizeController = FontSizeController.shared
 
-    var results: [DictionaryController.Result]? {
+    var results: [LookupResult]? {
         didSet {
             expandedInflections.removeAll()
             renderResults()
@@ -54,7 +54,7 @@ class LookupViewController: NSViewController {
     override func restoreState(with coder: NSCoder) {
         super.restoreState(with: coder)
         if let data = coder.decodeObject(of: NSData.self, forKey: "resultsJSON") {
-            results = try? JSONDecoder().decode([DictionaryController.Result].self,
+            results = try? JSONDecoder().decode([LookupResult].self,
                                                 from: data as Data)
         }
     }
@@ -81,6 +81,7 @@ class LookupViewController: NSViewController {
         textView.textContainer?.widthTracksTextView = true
         textView.textContainer?.containerSize = NSSize(width: view.bounds.width, height: CGFloat.greatestFiniteMagnitude)
         textView.setAccessibilityLabel("Dictionary results")
+        textView.setAccessibilityIdentifier("lookupResults")
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -142,7 +143,10 @@ class LookupViewController: NSViewController {
             showInflections: UserDefaults.standard.bool(forKey: "showInflections"),
             expandedInflections: expandedInflections
         )
+        let selection = textView.selectedRange()
+        let preservesSelection = textView.string == output.string
         textView.textStorage?.setAttributedString(output)
+        if preservesSelection { textView.setSelectedRange(selection) }
         scrollView.contentView.scroll(to: origin)
         scrollView.reflectScrolledClipView(scrollView.contentView)
     }

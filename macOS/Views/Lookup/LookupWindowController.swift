@@ -14,16 +14,6 @@ extension NSUserInterfaceItemIdentifier {
     static let directionMenu = NSUserInterfaceItemIdentifier("directionMenu")
 }
 
-extension UserDefaults {
-    var dictionaryOptions: Dictionary.Options {
-        var options = Dictionary.Options()
-        if bool(forKey: "diagnosticMode"), AppDelegate.shared.isDebug {
-            options.insert(.diagnosticMode)
-        }
-        return options
-    }
-}
-
 private extension NSStoryboard.SceneIdentifier {
     static let lookupWindowController =  NSStoryboard.SceneIdentifier("LookupWindowController")
 }
@@ -31,10 +21,6 @@ private extension NSStoryboard.SceneIdentifier {
 let DEFAULT_DIRECTION: Dictionary.Direction = .latinToEnglish
 
 class LookupWindowController: NSWindowController {
-
-    override class var restorableStateKeyPaths: [String] {
-        ["_direction", "dictionaryController"]
-    }
 
     @IBOutlet @objc
     dynamic var backForwardController: BackForwardController!
@@ -74,6 +60,7 @@ class LookupWindowController: NSWindowController {
 
     override func windowDidLoad() {
         super.windowDidLoad()
+        AppDelegate.shared?.retainWindow(self)
 
         window?.showsToolbarButton = true
 
@@ -95,8 +82,11 @@ class LookupWindowController: NSWindowController {
         window?.setContentSize(NSSize(width: 700, height: 500))
 
         window?.restorationClass = WindowRestoration.self
+        window?.isRestorable = true
+        window?.identifier = NSUserInterfaceItemIdentifier("lookup-" + UUID().uuidString)
 
         dirObservation = dictionaryController.observe(\.direction) { [weak self] dictionaryController, change in
+            MainActor.assumeIsolated {
             guard let self = self else { return }
             let direction = dictionaryController.direction
             AppDelegate.shared?.updateDirectionItemsState(direction)
@@ -106,6 +96,7 @@ class LookupWindowController: NSWindowController {
 
             self.directionMenuFormRepresentation.items[direction.rawValue].state = .on
             self.directionMenuFormRepresentation.items[1 - direction.rawValue].state = .off
+            }
         }
 
         UserDefaults.standard.addObserver(self, forKeyPath: "windowsFloatOnTop", context: nil)
@@ -154,15 +145,27 @@ class LookupWindowController: NSWindowController {
 
     @objc
     override func encodeRestorableState(with coder: NSCoder) {
+        coder.encode(dictionaryController.direction.rawValue, forKey: "lookupDirection")
+        if let results = lookupViewController?.results, let data = try? JSONEncoder().encode(results) {
+            coder.encode(data, forKey: "lookupResultsJSON")
+        }
         backForwardController.encode(with: coder)
         super.encodeRestorableState(with: coder)
     }
 
     @objc
     override func restoreState(with coder: NSCoder) {
+        _ = window // Load storyboard outlets before decoding.
+        if coder.containsValue(forKey: "lookupDirection") {
+            dictionaryController.direction = Dictionary.Direction(rawValue: coder.decodeInteger(forKey: "lookupDirection")) ?? .latinToEnglish
+        }
+        if let data = coder.decodeObject(of: NSData.self, forKey: "lookupResultsJSON") {
+            lookupViewController.results = try? JSONDecoder().decode([LookupResult].self, from: data as Data)
+        }
         backForwardController.decode(with: coder)
         if let currentSearchDisplayText = backForwardController.currentSearchQuery?.displaySearchText() {
             self.window?.tab.title = currentSearchDisplayText
+            if let query = backForwardController.currentSearchQuery { searchBar?.update(for: query) }
         }
         super.restoreState(with: coder)
 
@@ -186,9 +189,11 @@ class LookupWindowController: NSWindowController {
     }
 
     func windowWillClose(_ notification: Notification) {
+        dictionaryController?.cancel()
         backForwardController = nil
         fontManager = nil
         dictionaryController = nil
+        AppDelegate.shared?.releaseWindow(self)
 
     }
 
@@ -199,7 +204,7 @@ class LookupWindowController: NSWindowController {
             NSSound.beep()
             return
         }
-        let text = DictionaryController.Result.allRaw(results)
+        let text = LookupResult.allRaw(results)
         let data = text.data(using: .utf8)
         let fileName = "\(backForwardController.currentSearchQuery?.searchText ?? "results").txt"
         let savePanel = NSSavePanel()
@@ -255,7 +260,7 @@ class LookupWindowController: NSWindowController {
         // Perform search
         isLoading = true
         dictionaryController.search(text: searchQuery.searchText) { [weak self] result in
-            guard let self = self else {
+            guard let self = self, self.dictionaryController != nil else {
                 return
             }
             switch result {
@@ -271,6 +276,7 @@ class LookupWindowController: NSWindowController {
                 }
                 self.lookupViewController.results = results
                 self.isLoading = false
+                self.invalidateRestorableState()
             }
         }
 

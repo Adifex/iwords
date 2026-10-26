@@ -257,10 +257,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="548" height="366"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="24" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ge3-eK-OHR">
-                                <rect key="frame" x="20" y="238" width="505" height="108"/>
+                                <rect key="frame" x="20" y="238" width="508" height="108"/>
                                 <subviews>
                                     <gridView xPlacement="leading" yPlacement="top" rowAlignment="none" rowSpacing="24" columnSpacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="7eT-vt-UMC">
-                                        <rect key="frame" x="0.0" y="-20" width="347" height="128"/>
+                                        <rect key="frame" x="0.0" y="112" width="347" height="128"/>
                                         <rows>
                                             <gridRow rowAlignment="firstBaseline" id="RLq-gE-v2S"/>
                                             <gridRow rowAlignment="firstBaseline" id="VuE-iz-OSD"/>
@@ -395,21 +395,19 @@
                                         </gridCells>
                                     </gridView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalClippingResistancePriority="250" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zwV-hE-buG">
-                                        <rect key="frame" x="0.0" y="-76" width="505" height="32"/>
+                                        <rect key="frame" x="0.0" y="56" width="508" height="32"/>
                                         <subviews>
-                                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="vj5-TA-c8q">
-                                                <rect key="frame" x="-2" y="0.0" width="409" height="32"/>
-                                                <textFieldCell key="cell" selectable="YES" alignment="left" id="MXo-xz-aim">
+                                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vj5-TA-c8q">
+                                                <rect key="frame" x="-2" y="0.0" width="416" height="32"/>
+                                                <textFieldCell key="cell" selectable="YES" alignment="left" title="Enable custom settings to choose which words and spelling rules are included." id="MXo-xz-aim">
                                                     <font key="font" usesAppearanceFont="YES"/>
-                                                    <string key="title">Dictionary files need to be installed in order to customize settings. 
-This will use 33 MB of additional disk space.</string>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F32-Sb-ZlH">
-                                                <rect key="frame" x="413" y="4" width="92" height="24"/>
-                                                <buttonCell key="cell" type="push" title="Install Files" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2XC-9T-A7h">
+                                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F32-Sb-ZlH">
+                                                <rect key="frame" x="420" y="4" width="88" height="24"/>
+                                                <buttonCell key="cell" type="push" title="Customize" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2XC-9T-A7h">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
@@ -438,17 +436,16 @@ This will use 33 MB of additional disk space.</string>
                                                 </imageCell>
                                             </imageView>
                                             <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vPG-Jx-RXa">
-                                                <rect key="frame" x="24" y="0.0" width="377" height="32"/>
-                                                <textFieldCell key="cell" selectable="YES" alignment="left" id="bOb-9k-o0H">
+                                                <rect key="frame" x="24" y="1" width="379" height="30"/>
+                                                <textFieldCell key="cell" selectable="YES" alignment="left" title="Custom settings are enabled. Use defaults to pause your customizations; your choices will be saved." id="bOb-9k-o0H">
                                                     <font key="font" textStyle="callout" name=".SFNS-Regular"/>
-                                                    <string key="title">Dictionary files have been installed. Removing them will save 33 MB of disk space, but you will lose any customizations to dictionary settings.</string>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                             <button horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="On2-RH-MI9">
-                                                <rect key="frame" x="406" y="4" width="96" height="23"/>
-                                                <buttonCell key="cell" type="roundTextured" title="Remove Files" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bBb-F2-7Wp">
+                                                <rect key="frame" x="408" y="4" width="94" height="23"/>
+                                                <buttonCell key="cell" type="roundTextured" title="Use Defaults" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bBb-F2-7Wp">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
