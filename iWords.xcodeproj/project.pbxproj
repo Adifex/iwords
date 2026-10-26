@@ -27,7 +27,6 @@
 		37679E00262CC87C003D15E1 /* WindowRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37679DFF262CC87C003D15E1 /* WindowRestoration.swift */; };
 		37852AD0278B3EC500ACFFE6 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37852ACF278B3EC500ACFFE6 /* LoadingView.swift */; };
 		37852AD2278B45ED00ACFFE6 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37852AD1278B45ED00ACFFE6 /* Dictionary.swift */; };
-		378C811527D40FD000DAC83A /* results-page.html in Resources */ = {isa = PBXBuildFile; fileRef = 378C811427D40FD000DAC83A /* results-page.html */; };
 		378C811927D52FC300DAC83A /* FontSizeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C811827D52FC300DAC83A /* FontSizeController.swift */; };
 		378E51FA2795C9FF00730204 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 378E51F92795C9FF00730204 /* Settings.storyboard */; };
 		378E51FC2795D57600730204 /* InterfaceSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378E51FB2795D57600730204 /* InterfaceSettingsViewController.swift */; };
@@ -54,6 +53,7 @@
 		37CC4363263476DD00E60CE9 /* DefinitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CC4362263476DD00E60CE9 /* DefinitionTests.swift */; };
 		37ECE3322826CBEF0087C94C /* SearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECE3312826CBEF0087C94C /* SearchQuery.swift */; };
 		37EDB2EA27945A4400911BC6 /* AutosizingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EDB2E927945A4400911BC6 /* AutosizingTextField.swift */; };
+		43927BA2308F3D84001ED5FF /* ResultsRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43927BA1308F3D84001ED5FF /* ResultsRenderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,7 +99,6 @@
 		37679DFF262CC87C003D15E1 /* WindowRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowRestoration.swift; sourceTree = "<group>"; };
 		37852ACF278B3EC500ACFFE6 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		37852AD1278B45ED00ACFFE6 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
-		378C811427D40FD000DAC83A /* results-page.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "results-page.html"; sourceTree = "<group>"; };
 		378C811827D52FC300DAC83A /* FontSizeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeController.swift; sourceTree = "<group>"; };
 		378E51F92795C9FF00730204 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		378E51FB2795D57600730204 /* InterfaceSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceSettingsViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +134,7 @@
 		37CC43692634D81900E60CE9 /* DefinitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionView.swift; sourceTree = "<group>"; };
 		37ECE3312826CBEF0087C94C /* SearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQuery.swift; sourceTree = "<group>"; };
 		37EDB2E927945A4400911BC6 /* AutosizingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutosizingTextField.swift; sourceTree = "<group>"; };
+		43927BA1308F3D84001ED5FF /* ResultsRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsRenderer.swift; sourceTree = "<group>"; };
 		AA0000000000000000000001 /* Config/macOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/macOS.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -200,10 +200,10 @@
 			children = (
 				374355B5279C9E770052CFBA /* Search Bar */,
 				37852ACF278B3EC500ACFFE6 /* LoadingView.swift */,
-				378C811427D40FD000DAC83A /* results-page.html */,
 				37A4D24B26223C6D00A9E9EC /* LookupViewController.swift */,
 				37A4D256262240D000A9E9EC /* LookupWindowController.swift */,
 				37ECE3312826CBEF0087C94C /* SearchQuery.swift */,
+				43927BA1308F3D84001ED5FF /* ResultsRenderer.swift */,
 			);
 			path = Lookup;
 			sourceTree = "<group>";
@@ -487,7 +487,6 @@
 				37AB5A172626713500118674 /* INFLECTS.LAT in Resources */,
 				37192C612870D7910063471D /* help.html in Resources */,
 				37AB5A192626713500118674 /* INDXFILE.GEN in Resources */,
-				378C811527D40FD000DAC83A /* results-page.html in Resources */,
 				373AECC3272EB26F0021A393 /* PreviewAssets.xcassets in Resources */,
 				37A4D24726223BFB00A9E9EC /* Main.storyboard in Resources */,
 				3760B37D27B07C3C00F81F38 /* Dictionary Settings Help.rtf in Resources */,
@@ -535,7 +534,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eu\nstaging=\"${TEMP_DIR}/SignedWORDS\"\nmkdir -p \"$staging\" \"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}\"\ncp \"${SRCROOT}/macOS/Dictionary/WORDS/words\" \"$staging/words\"\n/usr/bin/codesign --force --options=runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY:--}\" \"$staging/words\"\ncp \"$staging/words\" \"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/words\"\n";
+			shellScript = "set -eu\nengine_dir=\"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}\"\nmkdir -p \"$engine_dir\"\n# A fresh inode avoids stale kernel code-signature state when rebuilding a used helper.\nstaging=$(mktemp -d \"${TEMP_DIR}/SignedWORDS.XXXXXX\")\ntrap 'rm -rf \"$staging\"' EXIT\ncp \"${SRCROOT}/macOS/Dictionary/WORDS/words\" \"$staging/words\"\n/usr/bin/codesign --force --options=runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY:--}\" \"$staging/words\"\n/usr/bin/codesign --verify --strict \"$staging/words\"\nmv -f \"$staging/words\" \"$engine_dir/words\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -570,6 +569,7 @@
 				37EDB2EA27945A4400911BC6 /* AutosizingTextField.swift in Sources */,
 				3760B38C27B1E7DD00F81F38 /* DictionaryParser.swift in Sources */,
 				37A4D24D26223D7A00A9E9EC /* LookupViewController.swift in Sources */,
+				43927BA2308F3D84001ED5FF /* ResultsRenderer.swift in Sources */,
 				37988D5527249A6D00FFBB97 /* LookUpIntentHandler.swift in Sources */,
 				3760B37B27B07B3400F81F38 /* DictionarySettingsHelpViewController.swift in Sources */,
 				37852AD2278B45ED00ACFFE6 /* Dictionary.swift in Sources */,

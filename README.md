@@ -15,7 +15,7 @@ For a fresh build after switching from an older branch, use Product → Clean Bu
 
 ## Architecture and dependencies
 
-Swift AppKit controllers manage windows, settings and lookup history. `Dictionary` owns a long-running WORDS subprocess and its prompt protocol; `DictionaryParser` converts Pearse-coded output into structured results. `WKWebView` renders local HTML using vanilla JavaScript. The Ada engine remains separate, so its linguistic behavior can be preserved and tested independently of the Swift UI.
+Swift AppKit controllers manage windows, settings and lookup history. `Dictionary` owns a long-running WORDS subprocess and its prompt protocol; `DictionaryParser` converts Pearse-coded output into structured results. An AppKit text view renders results directly as attributed text, with native selection, links, text scaling and printing. The Ada engine remains separate, so its linguistic behavior can be preserved and tested independently of the Swift UI.
 
 | Dependency | Purpose | Version/source |
 | --- | --- | --- |
