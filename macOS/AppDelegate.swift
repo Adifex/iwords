@@ -223,8 +223,28 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
     func application(_ application: NSApplication, willContinueUserActivityWithType userActivityType: String) -> Bool {
-        print(userActivityType)
-        return false
+        userActivityType == LookUpIntentHandler.activityType
+    }
+
+    func application(_ application: NSApplication, continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([NSUserActivityRestoring]) -> Void) -> Bool {
+        guard userActivity.activityType == LookUpIntentHandler.activityType else { return false }
+
+        let terms: [String]
+        let direction: Dictionary.Direction?
+        if let intent = userActivity.interaction?.intent as? LookUpIntent {
+            terms = LookUpIntentHandler.searchTerms(from: intent.query)
+            direction = Dictionary.Direction(intent.direction)
+        } else {
+            // Successful background lookups carry their input into foreground continuation.
+            terms = LookUpIntentHandler.searchTerms(from: userActivity.userInfo?["query"] as? [String])
+            direction = (userActivity.userInfo?["direction"] as? Int)
+                .flatMap(Dictionary.Direction.init(rawValue:))
+        }
+
+        guard let direction, !terms.isEmpty,
+              terms.allSatisfy(LookUpIntentHandler.isValidSearchTerm) else { return false }
+        return ServiceProvider().lookUp(terms.joined(separator: " "), direction: direction)
     }
 
     @available(macOS 12.0, *)
